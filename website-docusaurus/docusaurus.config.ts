@@ -2,37 +2,36 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const websiteBaseUrl = process.env.WEBSITE_BASE_URL || '/';
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
-
+  title: 'kepler.gl',
+  tagline:
+    'Kepler.gl is a powerful open source geospatial analysis tool for large-scale data sets.',
+  favicon: 'img/favicon.png',
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true // Improve compatibility with the upcoming Docusaurus v4
   },
-
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-
+  url: 'https://kepler.gl',
+  baseUrl: websiteBaseUrl,
+  organizationName: 'keplergl', // Usually your GitHub org/user name.
+  projectName: 'kepler.gl', // Usually your repo name.
   onBrokenLinks: 'throw',
-
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn'
+    }
+  },
+  trailingSlash: false,
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en']
   },
 
   presets: [
@@ -44,13 +43,13 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/'
         },
         blog: {
           showReadingTime: true,
           feedOptions: {
             type: ['rss', 'atom'],
-            xslt: true,
+            xslt: true
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -59,92 +58,127 @@ const config: Config = {
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          onUntruncatedBlogPosts: 'warn'
         },
         theme: {
-          customCss: './src/css/custom.css',
-        },
-      } satisfies Preset.Options,
-    ],
+          customCss: './src/css/custom.css'
+        }
+      } satisfies Preset.Options
+    ]
   ],
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: '/img/kepler-gl-social-card-image.png',
     colorMode: {
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: true
     },
     navbar: {
-      title: 'My Site',
+      title: 'Kepler.gl',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Kepler.gl Logo',
+        src: 'img/favicon.png'
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs'
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/docs/user-guides', label: 'User Guide', position: 'left'},
+        {to: '/policy', label: 'Support Policy', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/keplergl/kepler.gl',
           label: 'GitHub',
-          position: 'right',
+          position: 'right'
         },
-      ],
+        {
+          href: 'https://www.openvisualization.org',
+          label: 'OpenJS Foundation',
+          position: 'right'
+        }
+      ]
     },
+    // TODO: Update footer links
     footer: {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Resources',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'API Reference',
+              to: '/docs/api-reference'
             },
-          ],
+            {
+              label: 'Starter templates',
+              href: 'https://github.com/visgl/deck.gl/tree/master/examples/get-started'
+            },
+            {
+              label: 'Playground',
+              href: '/demo'
+            }
+          ]
         },
         {
-          title: 'Community',
+          title: 'Other vis.gl Libraries',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'deck.gl-community',
+              href: 'https://visgl.github.io/deck.gl-community/'
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'luma.gl',
+              href: 'https://luma.gl'
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'loaders.gl',
+              href: 'https://loaders.gl'
             },
-          ],
+            {
+              label: 'react-map-gl',
+              href: 'https://visgl.github.io/react-map-gl'
+            }
+          ]
         },
         {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Slack workspace',
+              href: 'https://slack-invite.openjsf.org'
+            },
+            {
+              label: 'vis.gl blog on Medium',
+              href: 'https://medium.com/vis-gl'
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
+              href: 'https://github.com/keplergl/kepler.gl'
+            }
+          ]
+        }
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright:
+        '<div class="footer-copy">Copyright <a href="https://openjsf.org">OpenJS Foundation</a> and vis.gl contributors. All rights reserved. The <a href="https://openjsf.org">OpenJS Foundation</a> has registered trademarks and uses trademarks. For a list of trademarks of the <a href="https://openjsf.org">OpenJS Foundation</a>, please see our <a href="https://trademark-policy.openjsf.org">Trademark Policy</a> and <a href="https://trademark-list.openjsf.org">Trademark List</a>. Trademarks and logos not indicated on the <a href="https://trademark-list.openjsf.org">list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.<br><br><a href="https://openjsf.org">The OpenJS Foundation</a> | <a href="https://terms-of-use.openjsf.org">Terms of Use</a> | <a href="https://privacy-policy.openjsf.org">Privacy Policy</a> | <a href="https://bylaws.openjsf.org">Bylaws</a> | <a href="https://code-of-conduct.openjsf.org">Code of Conduct</a> | <a href="https://trademark-policy.openjsf.org">Trademark Policy</a> | <a href="https://trademark-list.openjsf.org">Trademark List</a> | <a href="https://www.linuxfoundation.org/cookies">Cookie Policy</a></div>'
+    },
+    algolia: {
+      // The application ID provided by Algolia
+      appId: '8EVYAVB4KT',
+      // Public API key: it is safe to commit it
+      apiKey: 'a3fe1388353d733272ffdf148c53eeaa',
+      indexName: 'kepler',
+      // Optional: see doc section below
+      contextualSearch: true,
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: false
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-    },
-  } satisfies Preset.ThemeConfig,
+      darkTheme: prismThemes.dracula
+    }
+  } satisfies Preset.ThemeConfig
 };
 
 export default config;
